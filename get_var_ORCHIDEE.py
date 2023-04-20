@@ -18,7 +18,7 @@ def load_DATASET(PATH: str, job_NAME: str, yr_START: int, yr_END: int):
     df_sechiba_4dim = xr.open_dataset(f"{PATH}/SRF/Output/MO/{job_NAME}_{yr_START}_{yr_END}_1M_sechiba_history_4dim.nc")
     return df_stomate,df_stomate_4dim,df_sechiba,df_sechiba_4dim
 
-df_stomate, df_stomate_4dim, df_sechiba, df_sechiba_4dim = load_DATASET(PATH = f"/home/scratch01/egaglo/IGCM_OUT/OL2/TEST/test/", 
+df_stomate, df_stomate_4dim, df_sechiba, df_sechiba_4dim = load_DATASET(PATH = f"/home/scratch01/egaglo/IGCM_OUT/OL2/TEST/test", 
                                                                         job_NAME = "FG2-origin-PFT3", yr_START = 1761, yr_END = 2070)
 
 def get_VARIABLES(data):   
