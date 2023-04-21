@@ -12,10 +12,10 @@ def load_DATASET(PATH: str, job_NAME: str, yr_START: int, yr_END: int):
 # in the code. The netCDF files contain data that is being used for
 # analysis and manipulation in the code.
 
-    df_stomate =xr.open_dataset(f"{PATH}/SBG/Output/MO/{job_NAME}_{yr_START}_{yr_END}_1M_stomate_history.nc")
-    df_stomate_4dim = xr.open_dataset(f"{PATH}/SBG/Output/MO/{job_NAME}_{yr_START}_{yr_END}_1M_stomate_history_4dim.nc")
-    df_sechiba = xr.open_dataset(f"/{PATH}/SRF/Output/MO/{job_NAME}_{yr_START}_{yr_END}_1M_sechiba_history.nc")
-    df_sechiba_4dim = xr.open_dataset(f"{PATH}/SRF/Output/MO/{job_NAME}_{yr_START}_{yr_END}_1M_sechiba_history_4dim.nc")
+    df_stomate =xr.open_dataset(f"{PATH}/{job_NAME}/SBG/Output/MO/{job_NAME}_{yr_START}_{yr_END}_1M_stomate_history.nc")
+    df_stomate_4dim = xr.open_dataset(f"{PATH}/{job_NAME}/SBG/Output/MO/{job_NAME}_{yr_START}_{yr_END}_1M_stomate_history_4dim.nc")
+    df_sechiba = xr.open_dataset(f"{PATH}/{job_NAME}/SRF/Output/MO/{job_NAME}_{yr_START}_{yr_END}_1M_sechiba_history.nc")
+    df_sechiba_4dim = xr.open_dataset(f"{PATH}/{job_NAME}/SRF/Output/MO/{job_NAME}_{yr_START}_{yr_END}_1M_sechiba_history_4dim.nc")
     return df_stomate,df_stomate_4dim,df_sechiba,df_sechiba_4dim
 
 df_stomate, df_stomate_4dim, df_sechiba, df_sechiba_4dim = load_DATASET(PATH = f"/home/scratch01/egaglo/IGCM_OUT/OL2/TEST/test", 
