@@ -1,8 +1,6 @@
 ###Read datasets
-
-
-#Cette ligne verifie si les packages suivant sont installés
-#sinon ces packages seront installés.
+#Cette ligne verifie si les packages suivant sont installÃ©s
+#sinon ces packages seront installÃ©s.
 Sys.setenv(TZ='GMT')
 ## First specify the packages of interest
 packages = c("magrittr","ncdf4", "raster", "reshape2", "readr", "tidyverse")
@@ -19,15 +17,11 @@ package.check <- lapply(
 )
 
 #Read the csv file
-path = "D:/Thèses/Dossier_ma_These/Data/Humidity/InPuits2HumWoodTsoilHumsoil.csv"
-
+path = "D:/Theses/Dossier_ma_These/Data/Humidity/InPuits2HumWoodTsoilHumsoil.csv"
 
 humidity_dataset <- read_csv(path, na = "NA")
 
-
 head(humidity_dataset)
-
-
 
 
 #1. Create function (my_extraction_function) that extract the columns of interest in the hole dataframe
@@ -49,7 +43,6 @@ my_extraction_function <- function(dataset, sr_expresssion){
       
       # a = length(ColOI) #before
       ColOI = append(ColOI, colnames(dataset)[i])
-
 
     }
     if(i==length(colnames(dataset))){
@@ -105,9 +98,6 @@ my_rename_and_melt_function <-function(dataset, new.names, meltID, lat.value, lo
 # # #testname = c("ID","Wood.T1", "Wood.T2", "Wood.T3", "Wood.T4") 
 # melt_ID = c("ID")
 
-
-
-
 #Apply my_rename_and_melt_function to previous dataset get
 
 reshape_ID = c("date.index")
@@ -118,9 +108,6 @@ soil_layers = c("date.index","20","40","60","80","120",
 
 lon=-17.5
 lat=13.94
-
-
-
 
 SoilWVC_dataset_reshape <-my_rename_and_melt_function(dataset = my_extraction_function(humidity_dataset, sr_expresssion = "SoilVWC"),
                                               new.names = soil_layers, meltID = reshape_ID, lat, lon)
@@ -135,8 +122,6 @@ WoodT_dataset_reshape <-my_rename_and_melt_function(dataset = my_extraction_func
                                               new.names = wood_temp, meltID = reshape_ID, lat, lon)
 
 ###Create matrix according to n dimensions
-
-
 
 data.distance <- seq(1,1, by=1)
 ##
@@ -167,9 +152,6 @@ dimTime <- ncdim_def('time', units='semi hour', longname='Timestamp: every semi 
 dimLon <- ncdim_def('lon', units='degrees_east', longname='longitude', calendar="standard", vals=-17.5)
 
 dimLat <- ncdim_def('lat', units='degrees_north', longname='latitude', calendar="standard", vals=13.94)
-
-
-
 
 varLat <- ncvar_def(name='lat', units='degrees_north', dim=list(dimLayer), missval=NA, longname='latitude', prec='double')
 varLon <- ncvar_def(name='lon', units='degrees_east', dim=list(dimLayer), missval=NA, longname='latitude', prec='double')
@@ -225,8 +207,5 @@ ncvar_put(con, varWood.WVC, WoodVWC_dataset_reshape$value)
 ncvar_put(con, varWood.T, WoodT_dataset_reshape$value)
 
 
-
 (con)
 nc_close(con)
-
-
